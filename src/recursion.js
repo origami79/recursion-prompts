@@ -71,18 +71,21 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  if (x - y === 2) {
-    return x - 1;
-  } else if (x > y) {
-    return [x - 1].concat(range(x - 1), y);
+  var result = [];
+  if (x === y || x - y === 1 || y - x === 1) {
+    return result;
   }
-  if (y - x === 2) {
-    return y - 1;
-  } else if (x === y || y - x === 1) {
-    return [];
-  } else {
-    return [x + 1].concat(range(x + 1, y));
+  if (x < y) {
+    x += 1;
+    result.push(x);
+    return result.concat(range(x, y));
   }
+  if (x > y) {
+    x -= 1;
+    result.push(x);
+    return result.concat(range(x, y));
+  }
+
 };
 
 // 7. Compute the exponent of a number.
